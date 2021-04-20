@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ReactDOM from "react-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
+
+import './App.scss';
+import 'semantic-ui-css/semantic.min.css'
+
+import Login from './components/Forms/Login';
+import Register from './components/Forms/Register';
+import PrivateRoute from './components/PrivateRoute';
+import AuthAPI from './services/authAPI';
+import AuthContext from './contexts/AuthContext';
+import PostList from './components/PostList';
+
+AuthAPI.setup();
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(AuthAPI.isAuthenticated());
+
+  const handleLogout = () => {
+    AuthAPI.logout();
+    setIsAuthenticated(false);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={{
+      isAuthenticated,
+      setIsAuthenticated
+    }}>
+      <HashRouter>
+        <div className="App">
+          <h1>Node-React</h1>
+          {isAuthenticated ? <button type="button" className="negative ui button" onClick={handleLogout}>Deconnexion</button> : ''}
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <PrivateRoute path="/posts" component={PostList} />
+            {isAuthenticated 
+              ? <Route path="/" component={PostList} />
+              : <Route path="/" component={Login} />
+            }
+          </Switch>
+        </div>
+      </HashRouter>
+    </AuthContext.Provider>
   );
 }
 

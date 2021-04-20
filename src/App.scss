@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+  padding: 40px;
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      &.account {
+        margin: 20px 0;
+      }
+    }
+  }
+}
