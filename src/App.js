@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute';
 import AuthAPI from './services/authAPI';
 import AuthContext from './contexts/AuthContext';
 import PostList from './components/PostList';
+import PostShow from './components/PostShow';
 
 AuthAPI.setup();
 
@@ -34,7 +35,8 @@ function App() {
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <PrivateRoute path="/posts" component={PostList} />
+            <PrivateRoute path="/post/:id" component={PostShow} />
+            <PrivateRoute path="/post" component={PostList} />
             {isAuthenticated 
               ? <Route path="/" component={PostList} />
               : <Route path="/" component={Login} />
