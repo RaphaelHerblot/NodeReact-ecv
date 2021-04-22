@@ -3,7 +3,7 @@ import Comment from '../Comment';
 import CommentAPI from '../../services/commentAPI';
 import CommentForm from '../Forms/Comment';
 
-const CommentList = ({ postId }) => {
+const CommentList = ({ postId, authenticatedUser }) => {
     const[comments, setComments] = useState([]);
     const[newComment, setNewComment] = useState(false);
 
@@ -32,7 +32,7 @@ const CommentList = ({ postId }) => {
             <div className="ui comments">
                 <h3 className="ui dividing header">Comments</h3>
                 {comments.map(comment => 
-                    <Comment key={comment._id} comment={comment} postId={postId}  />
+                    <Comment key={comment._id} comment={comment} postId={postId} authenticatedUser={authenticatedUser} fetchComments={fetchComments} />
                 )}
                 <CommentForm postId={postId} setNewComment={setNewComment} setComments={setComments} comments={comments} />
             </div>

@@ -39,6 +39,7 @@
     margin: 50px 20px;
 
     .card {
+      width:340px;  
       padding: 10px;
 
       .likes {
@@ -50,6 +51,47 @@
           width: 25px;
           cursor: pointer;
         }
+      }
+
+      .button-post {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 30%;
+
+        button {
+          margin: 8px;
+        }
+      }
+    }
+  }
+
+  .listComments {
+    .comments {
+      .action-comment {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        p {
+          &.delete-comment {
+            font-size: 11px;
+            font-style: italic;
+            color: #d61414;
+            cursor: pointer;
+            margin: 0 6px 0 0;
+          }
+        }
+
+        .like-comment {
+          width: 12px;
+          margin-right: 3px;
+          cursor: pointer;
+        }
+      }
+
+      textarea {
+        height: 100px !important;
       }
     }
   }

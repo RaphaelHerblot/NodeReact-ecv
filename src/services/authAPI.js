@@ -53,9 +53,15 @@ function isAuthenticated() {
     }
 }
 
+function findConnectedUser() {
+    const token = jwtDecode(window.localStorage.getItem("authToken"));
+    return token._id
+}
+
 export default {
     authentification,
     logout,
     setup,
-    isAuthenticated
+    isAuthenticated,
+    findConnectedUser
 }

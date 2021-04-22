@@ -21,10 +21,6 @@ const CommentForm = ({ postId, setNewComment, setComments, comments }) => {
                 comment
             );
             setNewComment(true);
-            // const tempComments = response.data.data.push(comments);
-            // console.log(typeof comments);
-            // console.log(tempComments)
-            // setComments(comments.push(response.data.data));
         } catch(error) {
             console.log(error.response);
         }
