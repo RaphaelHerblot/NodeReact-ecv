@@ -7,7 +7,7 @@ function authentification(credentials) {
     .then(response => response.data.data[1])
     .then(token => {
         window.localStorage.setItem("authToken", token);
-        axios.defaults.headers["Authorization"] = "Bearer " + token;
+        axios.defaults.headers["Authorization"] = "JWT " + token;
         return true;
     })
 }

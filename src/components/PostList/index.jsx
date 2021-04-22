@@ -3,11 +3,11 @@ import PostPreview from '../PostPreview';
 import ReactDOM from "react-dom";
 
 import PostAPI from "../../services/postAPI";
+import PostForm from '../Forms/Post';
 
 const PostList = () => {
     const[posts, setPosts] = useState(["bjr", "sv", "ouquoi"]);
-    const[isLoaded, setIsLoaded] = useState(false);
-    const[posti, setPosti] = useState("LOOOOOOOOOOOOOOOL");
+    const[newPost, setNewPost] = useState(false);
 
     const fetchPosts = async () => {
         try {
@@ -24,21 +24,16 @@ const PostList = () => {
     }, [])
 
     useEffect(() => {
-        if(posts.length !== 0) {
-            console.log("MDRRRRRRRRRRRR")
-            const listPost = document.querySelector(".listPost");
+        if(newPost === true) {
+            fetchPosts();
+            setNewPost(false)
         }
-        console.log(posts);
-        console.log(posts.length);
-        {posts.map(post => 
-            // console.log(post.headline)  
-            <div>lolilol</div>
-            // <PostPreview post={post} />
-        )}
-    }, [posts])
+    }, [newPost])
 
     return (
         <div>
+            <h3>Ecrivez votre article !</h3>
+            <PostForm setNewPost={setNewPost} />
             <h3>Listes des news</h3>
             <div className="listPost">
                 {posts.map(post => 
