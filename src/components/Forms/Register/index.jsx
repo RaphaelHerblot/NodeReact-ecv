@@ -10,12 +10,14 @@ const Register = (props) => {
         password: ""
     })
 
+    // Handling the changes of input
     const handleChange = ({ currentTarget }) => {
         const {value, name} = currentTarget;
         setCredentials({...credentials, [name]: value})
         console.log(credentials);
     }
 
+    // POST a new User
     const handleSubmit = async event => {
         event.preventDefault();
 

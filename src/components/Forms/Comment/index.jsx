@@ -7,11 +7,13 @@ const CommentForm = ({ postId, setNewComment, setComments, comments }) => {
         post: postId
     })
 
+    // Handling the changes of input
     const handleChange = ({ currentTarget }) => {
         const {value, name} = currentTarget;
         setComment({...comment, [name]: value})
     }
 
+    // POST a new comment
     const handleSubmit = async event => {
         event.preventDefault();
 

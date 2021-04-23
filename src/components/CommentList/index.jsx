@@ -7,6 +7,7 @@ const CommentList = ({ postId, authenticatedUser }) => {
     const[comments, setComments] = useState([]);
     const[newComment, setNewComment] = useState(false);
 
+    // Fetching all the comment of a post
     const fetchComments = async () => {
         try {
             const dataComments = await CommentAPI.findAllFromOnePost(postId);
@@ -16,10 +17,12 @@ const CommentList = ({ postId, authenticatedUser }) => {
         }
     }
 
+    // Fetching all the comments of a post when component is first rendering
     useEffect(() => {
         fetchComments();
     }, [])
 
+    // Fetching all the comments again when a new comment is added
     useEffect(() => {
         if(newComment === true) {
             fetchComments();

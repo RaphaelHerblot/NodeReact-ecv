@@ -5,6 +5,7 @@ import AuthContext from '../../contexts/AuthContext';
 const PrivateRoute = ({ path, component }) => {
     const { isAuthenticated } = useContext(AuthContext);
 
+    // If user is authenticated he get access to the route, otherwise redirection to login
     return isAuthenticated ? (
         <Route path={path} component={component} />
     ) : (

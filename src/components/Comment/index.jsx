@@ -4,6 +4,7 @@ import CommentAPI from '../../services/commentAPI'
 
 const Comment = ({ comment, authenticatedUser, fetchComments }) => {
 
+    // Handling the delete of a comment
     const handleDelete = async () => {
         const commentContainer = document.querySelector('.comment-'+comment._id)
         commentContainer.innerHTML = "";
@@ -15,6 +16,7 @@ const Comment = ({ comment, authenticatedUser, fetchComments }) => {
         }
     }
 
+    // Handling the like of a comment
     const handleLike = async () => {
         try {
             await axios.post(
@@ -29,14 +31,14 @@ const Comment = ({ comment, authenticatedUser, fetchComments }) => {
     }
 
     return (
-        <div className={"comment-"+comment._id}>
+        <div className={"comment comment-"+comment._id}>
             <div className="avatar">
                 <img src="/images/jenny.jpg" alt={comment.author.givenName} />
             </div>
-            <div className="content">
-                <p className="author">{comment.author.givenName}</p>
+            <div className="content">   
+                <a className="author" href="#">{comment.author.givenName}</a>
                 <div className="metadata">
-                    <span className="date">{comment.creationDate}</span>
+                    <span className="date">{comment.creationDate.split('T')[0]}</span>
                 </div>
                 <div className="text">
                     {comment.content}

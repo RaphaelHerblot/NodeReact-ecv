@@ -14,6 +14,7 @@ const PostShow = (props) => {
     const[newPost, setNewPost] = useState(false);
     const[isUpdating, setIsUpdating] = useState(false);
 
+    // Fetching the post by its ID
     const fetchPost = async (idPost) => {
         try {
             const dataPost = await PostAPI.findOne(idPost);
@@ -24,6 +25,7 @@ const PostShow = (props) => {
         }
     }
 
+    // Fetching the user
     const fetchUser = async () => {
         try {
             const dataUser = await authAPI.findConnectedUser();
@@ -34,6 +36,7 @@ const PostShow = (props) => {
         }
     }
 
+    // Deleting a post
     const handleDelete = async () => {
         try {
             await PostAPI.delete(post._id);
@@ -44,6 +47,7 @@ const PostShow = (props) => {
         }
     }
 
+    // Handling like and unlike of a post
     const handleLike = async () => {
         try {
             const response = await axios.post(
@@ -63,10 +67,12 @@ const PostShow = (props) => {
         }
     }
 
+    // Setting the isUpdating variable to true to open the update form element
     const handleUpdate = () => {
         setIsUpdating(true);
     }
 
+    // Fetching the post and user connected
     useEffect(() => {
         fetchPost(props.match.params.id);
         fetchUser();
@@ -79,6 +85,7 @@ const PostShow = (props) => {
         }   
     }, [newPost]);
 
+    // When updating, update form opens and show element display none;
     useEffect(() => {
         if(post.length !== 0) {
             const contentContainer = document.querySelector('.main-content');
@@ -96,7 +103,7 @@ const PostShow = (props) => {
                     <div className="ui raised card">
                         <div className="main-content active">
                             <div className="content">
-                                <div className="header">{post.headline}</div>
+                                <div className="header"><h4>{post.headline}</h4></div>
                                     <div className="meta">
                                         <span className="category"></span>
                                     </div>
@@ -105,21 +112,19 @@ const PostShow = (props) => {
                                 </div>
                             </div>
                             <div className="extra content">
-                                <div className="right floated author">
-                                    <img className="ui avatar image" src="/images/matt.jpg" alt={post.author.givenName} /> {post.author.givenName}
+                                <div className="author">
+                                    <img className="ui avatar image" src="/images/matt.jpg" alt={post.author.givenName} /> {post.author.givenName + " " + post.author.familyName}
                                 </div>
-                                <div>
-                                    {authenticatedUser === post.author._id 
-                                        ? <div className="button-post">
-                                            <button type="button" className="small ui red button" onClick={handleUpdate}>Modifier</button>
-                                            <button type="button" className="small ui orange button" onClick={handleDelete}>Supprimer</button>
-                                        </div>
-                                        : ''
-                                    }
-                                </div>
-                                <div className="right floated likes">
+                                <div className="likes">
                                     {post.likes.length} <img src={"/images/"+alreadyLiked+".svg"} onClick={handleLike} alt="Click to like" />
                                 </div>
+                                {authenticatedUser === post.author._id 
+                                    ? <div className="button-post">
+                                        <button type="button" className="small ui orange button" onClick={handleUpdate}>Modifier</button>
+                                        <button type="button" className="small ui red button" onClick={handleDelete}>Supprimer</button>
+                                    </div>
+                                    : ''
+                                }
                             </div>
                         </div>
                         <div className="update-content">

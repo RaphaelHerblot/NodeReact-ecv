@@ -7,13 +7,17 @@ const PostForm = ({ setNewPost, currentPost, setIsUpdating, isUpdating }) => {
         body: "",
     })
 
+    // Handling the changes of input
     const handleChange = ({ currentTarget }) => {
         const {value, name} = currentTarget;
         setPost({...post, [name]: value})
     }
 
+    // POST or UPDATE a new post
     const handleSubmit = async event => {
         event.preventDefault();
+
+        // POST a new post
         if(isUpdating !== true) {
             try {
                 const response = await axios.post(
@@ -27,6 +31,7 @@ const PostForm = ({ setNewPost, currentPost, setIsUpdating, isUpdating }) => {
             }
         }
 
+        // UPDATE a new post
         else {
             try {
                 const response = await axios.put(
@@ -44,6 +49,7 @@ const PostForm = ({ setNewPost, currentPost, setIsUpdating, isUpdating }) => {
     }
     
     useEffect(() => {
+        // If it's an update we give the current post to the value of the update form
         if(typeof currentPost !== 'undefined') {
             const tempPost = {
                 headline: currentPost.headline,

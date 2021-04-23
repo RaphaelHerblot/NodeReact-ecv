@@ -44,6 +44,13 @@ body {
           }
         }
       }
+
+      > div {
+        > form {
+          max-width: 650px;
+          margin: 0 auto;
+        }
+      }
     
       .listPost {
         display: flex;
@@ -71,6 +78,10 @@ body {
         .card {
           width:340px;  
           padding: 10px;
+
+          .description {
+            margin-bottom: 10px;
+          }
     
           .likes {
             display: flex;
@@ -85,12 +96,19 @@ body {
     
           .button-post {
             display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
-            width: 30%;
+            justify-content: flex-end;
+            margin-top: 10px;
     
             button {
-              margin: 8px;
+              font-size: 10px;
+              margin: 3px;
+            }
+          }
+
+          .main-content {
+            .author,
+            .likes {
+              text-align: right;
             }
           }
     
@@ -107,6 +125,10 @@ body {
     
       .listComments {
         .comments {
+          .avatar {
+            margin-right: 6px;
+          }
+
           .action-comment {
             display: flex;
             align-items: center;

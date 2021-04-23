@@ -11,11 +11,13 @@ const Login = ({ history }) => {
     })
     const[error, setError] = useState("");
 
+    // Handling the changes of input
     const handleChange = ({currentTarget}) => {
         const {value, name} = currentTarget;
         setCredentials({...credentials, [name]: value})
     };
 
+    // Authentification
     const handleSubmit = async event => {
         event.preventDefault();
         

@@ -5,17 +5,12 @@ import AuthAPI from '../../services/authAPI';
 const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
     const history = useHistory();
 
+    // Logout handling
     const handleLogout = () => {
       AuthAPI.logout();
       setIsAuthenticated(false);
       history.push('/login');
     }
-
-    useEffect(() => {
-        if(isAuthenticated === false) {
-            return <Redirect to="/login/" />
-        }
-    }, []);
 
     return (
         <div className="menu-react">

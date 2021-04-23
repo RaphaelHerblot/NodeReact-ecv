@@ -1,6 +1,7 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 
+// Function for login
 function authentification(credentials) {
     return axios
     .post("http://localhost:3000/api/login", credentials)
@@ -12,15 +13,18 @@ function authentification(credentials) {
     })
 }
 
+// Function for logout
 function logout() {
     window.localStorage.removeItem("authToken");
     delete axios.defaults.headers["Authorization"];
 }
 
+// Function to set the token in the headers for the requests as default
 function setAxiosToken(token) {
     axios.defaults.headers["Authorization"] = "Bearer " + token;
 }
 
+// Setting up the user already authentificate if it didn't expire
 function setup() {
     const token = window.localStorage.getItem("authToken");
 
@@ -37,6 +41,7 @@ function setup() {
     }
 }
 
+// Checking if the user is Authenticated or not
 function isAuthenticated() {
     const token = window.localStorage.getItem("authToken");
 
@@ -53,6 +58,7 @@ function isAuthenticated() {
     }
 }
 
+// Function to return the id of the connected user
 function findConnectedUser() {
     const token = jwtDecode(window.localStorage.getItem("authToken"));
     return token._id
