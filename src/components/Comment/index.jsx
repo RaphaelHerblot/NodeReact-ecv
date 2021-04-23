@@ -17,7 +17,7 @@ const Comment = ({ comment, authenticatedUser, fetchComments }) => {
 
     const handleLike = async () => {
         try {
-            const response = await axios.post(
+            await axios.post(
                 "http://localhost:3000/api/like/like-comment", {
                     author: authenticatedUser,
                     comment: comment._id
@@ -28,16 +28,13 @@ const Comment = ({ comment, authenticatedUser, fetchComments }) => {
         }
     }
 
-    // useEffect(() => {
-    //     console.log("COMMENT : ", comment);
-    // }, [])
     return (
         <div className={"comment-"+comment._id}>
-            <a className="avatar">
-                <img src="/images/jenny.jpg" />
-            </a>
+            <div className="avatar">
+                <img src="/images/jenny.jpg" alt={comment.author.givenName} />
+            </div>
             <div className="content">
-                <a className="author">{comment.author.givenName}</a>
+                <p className="author">{comment.author.givenName}</p>
                 <div className="metadata">
                     <span className="date">{comment.creationDate}</span>
                 </div>
@@ -50,7 +47,7 @@ const Comment = ({ comment, authenticatedUser, fetchComments }) => {
                     ? <p className="delete-comment" onClick={handleDelete}>Supprimer</p>
                     : ''
                 }
-                <img className="like-comment" src="/images/plus.svg" onClick={handleLike} /><p>{comment.likes.length}</p>
+                <img className="like-comment" src="/images/plus.svg" onClick={handleLike} alt="Click to like" /><p>{comment.likes.length}</p>
             </div>
         </div>
     );

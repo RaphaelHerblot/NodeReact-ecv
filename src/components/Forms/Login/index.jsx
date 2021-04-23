@@ -44,7 +44,7 @@ const Login = ({ history }) => {
                 </div>
                 <button className="ui button" type="submit">Submit</button>
             </form>
-            <p class="account">
+            <p className="account">
                 Pas de compte ? <NavLink to="/register">Inscription !</NavLink>
             </p>
         </div>

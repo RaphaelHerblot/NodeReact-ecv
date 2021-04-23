@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from "react-dom";
 import { HashRouter, Switch, Route } from "react-router-dom";
 
 import './App.scss';
@@ -12,16 +11,12 @@ import AuthAPI from './services/authAPI';
 import AuthContext from './contexts/AuthContext';
 import PostList from './components/PostList';
 import PostShow from './components/PostShow';
+import Navbar from './components/Navbar';
 
 AuthAPI.setup();
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(AuthAPI.isAuthenticated());
-
-  const handleLogout = () => {
-    AuthAPI.logout();
-    setIsAuthenticated(false);
-  }
 
   return (
     <AuthContext.Provider value={{
@@ -30,18 +25,19 @@ function App() {
     }}>
       <HashRouter>
         <div className="App">
-          <h1>Node-React</h1>
-          {isAuthenticated ? <button type="button" className="negative ui button" onClick={handleLogout}>Deconnexion</button> : ''}
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <PrivateRoute path="/post/:id" component={PostShow} />
-            <PrivateRoute path="/post" component={PostList} />
-            {isAuthenticated 
-              ? <Route path="/" component={PostList} />
-              : <Route path="/" component={Login} />
-            }
-          </Switch>
+          <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+          <div className="main-page">
+            <Switch>
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              <PrivateRoute path="/post/:id" component={PostShow} />
+              <PrivateRoute path="/post" component={PostList} />
+              {isAuthenticated 
+                ? <Route path="/" component={PostList} />
+                : <Route path="/" component={Login} />
+              }
+            </Switch>
+          </div>
         </div>
       </HashRouter>
     </AuthContext.Provider>

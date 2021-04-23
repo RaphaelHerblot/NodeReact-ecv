@@ -4,17 +4,17 @@ const PostPreview = ({ post }) => {
 
     return (
         <Link to={"/post/"+post._id}>
-            <div class="ui card">
-                <div class="content">
-                    <div class="header">{post.headline}</div>
-                    <div class="meta">{post.creationDate}</div>
-                    <div class="description">
+            <div className="ui card">
+                <div className="content">
+                    <div className="header">{post.headline}</div>
+                    <div className="meta">{post.creationDate}</div>
+                    <div className="description">
                     <p>{post.body}</p>
                     </div>
                 </div>
-                <div class="extra content">
-                    <i class="check icon"></i>
-                    {/* {post.likes.length} */}
+                <div className="extra content">
+                    <i className="heart icon"></i>
+                    { typeof post.likes.length === 'undefined' ? '0' : post.likes.length }
                 </div>
             </div>
         </Link>

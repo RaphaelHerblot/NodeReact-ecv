@@ -1,98 +1,139 @@
-.App {
-  text-align: center;
-  padding: 40px;
-
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    p {
-      &.account {
-        margin: 20px 0;
-      }
-    }
-  }
-
-  .listPost {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    a {
-      .card {
-        margin: 15px;
+body {
+  .App {
+    text-align: center;
   
-        &:hover {
-          background-color: #f4f4f4;
-        }
+    .menu-react {
+      padding: 15px;
+      background-color: #313131;
+      font-size: 22px;
+      position: relative;
+  
+      a {
+        color: white;
+        font-weight: 700;
+      }
+  
+      button {
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        right: 2%;
       }
     }
-  }
-
-  .showPost {
-    display: flex;
-    justify-content: center;
-    text-align: left;
-    margin: 50px 20px;
-
-    .card {
-      width:340px;  
-      padding: 10px;
-
-      .likes {
+  
+    .main-page {
+    padding: 40px;
+  
+      .form-container {
+        background-color: white;
+        border-radius: 15px;
+        max-width: 550px;
         display: flex;
-        justify-content: flex-end;
-
-        img {
-          margin-left: 6px;
-          width: 25px;
-          cursor: pointer;
-        }
-      }
-
-      .button-post {
-        display: flex;
-        flex-wrap: wrap;
         flex-direction: column;
-        width: 30%;
-
-        button {
-          margin: 8px;
-        }
-      }
-    }
-  }
-
-  .listComments {
-    .comments {
-      .action-comment {
-        display: flex;
+        justify-content: center;
         align-items: center;
-        justify-content: flex-end;
-
+        padding: 15px 15px 10px;
+        margin: 0 auto;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    
         p {
-          &.delete-comment {
-            font-size: 11px;
-            font-style: italic;
-            color: #d61414;
-            cursor: pointer;
-            margin: 0 6px 0 0;
+          &.account {
+            margin: 20px 0;
           }
         }
-
-        .like-comment {
-          width: 12px;
-          margin-right: 3px;
-          cursor: pointer;
+      }
+    
+      .listPost {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+    
+        a {
+          .card {
+            margin: 15px;
+      
+            &:hover {
+              background-color: #f4f4f4;
+            }
+          }
         }
       }
-
-      textarea {
-        height: 100px !important;
+    
+      .showPost {
+        display: flex;
+        justify-content: center;
+        text-align: left;
+        margin: 50px 20px;
+    
+        .card {
+          width:340px;  
+          padding: 10px;
+    
+          .likes {
+            display: flex;
+            justify-content: flex-end;
+    
+            img {
+              margin-left: 6px;
+              width: 25px;
+              cursor: pointer;
+            }
+          }
+    
+          .button-post {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            width: 30%;
+    
+            button {
+              margin: 8px;
+            }
+          }
+    
+          .main-content,
+          .update-content {
+            display: none;
+    
+            &.active {
+              display: block;
+            }
+          }
+        }
+      }
+    
+      .listComments {
+        .comments {
+          .action-comment {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+    
+            p {
+              &.delete-comment {
+                font-size: 11px;
+                font-style: italic;
+                color: #d61414;
+                cursor: pointer;
+                margin: 0 6px 0 0;
+              }
+            }
+    
+            .like-comment {
+              width: 12px;
+              margin-right: 3px;
+              cursor: pointer;
+            }
+          }
+    
+          textarea {
+            height: 100px !important;
+          }
+        }
       }
     }
-  }
+  }  
 }

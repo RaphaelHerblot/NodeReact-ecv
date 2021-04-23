@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PostPreview from '../PostPreview';
-import ReactDOM from "react-dom";
 
 import PostAPI from "../../services/postAPI";
 import PostForm from '../Forms/Post';
@@ -36,8 +35,8 @@ const PostList = () => {
             <PostForm setNewPost={setNewPost} />
             <h3>Listes des news</h3>
             <div className="listPost">
-                {posts.map(post => 
-                    <PostPreview key={post._id} post={post} />
+                {posts.map((post, index) => 
+                    <PostPreview key={index} post={post} />
                 )}
             </div>
         </div>
